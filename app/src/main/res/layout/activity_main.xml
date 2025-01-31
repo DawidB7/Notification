@@ -19,5 +19,12 @@
         android:layout_gravity="center_horizontal"
         android:text="Powiadomienie długie"/>
 
+    <Button
+        android:id="@+id/NotificationPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Powiadomienie big picture"/>
+
 
 </LinearLayout>
