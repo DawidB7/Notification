@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.Notification);
         button.setOnClickListener(v->sendNotification());
+        Button button1 = findViewById(R.id.NotificationLong);
+        button1.setOnClickListener(view -> sendNotificationLong());
 
     }
 
@@ -55,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Nowe powiadomienie")
+                .setContentText("Treść powiadomienia")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void sendNotificationLong(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+                return;
+            }
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Nowe powiadomienie")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("fadjlkdfhlkddlkjdlkjdaslkjdlakjdlkadjalkjdaldjaslkdjaslkdjalkdjaslkdjalkjdaslkjda"))
                 .setContentText("Treść powiadomienia")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
