@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cfaniak);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.kotek);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Nowe powiadomienie")
