@@ -42,13 +42,27 @@ public class NotificationHelper {
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setAutoCancel(true);
 
-        if (largeIconResID != 0){
-            Bitmap largeIcon = BitmapFactory.decodeResource(activity.getResources(), largeIconResID);
-            builder.setLargeIcon(largeIcon);
-        }
 
         switch (styleType){
+            case 1:
+                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+                break;
+            case 2:
+                if (largeIconResID != 0){
+                    Bitmap largeIcon = BitmapFactory.decodeResource(activity.getResources(), largeIconResID);
+                    builder.setLargeIcon(largeIcon);
+                    builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(largeIcon).setBigContentTitle(title));
+                }
+                break;
+            case 3:
+                NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+                inboxStyle.addLine(message);
+                inboxStyle.addLine("Dodatkowa linia tekstu");
+                builder.setStyle(inboxStyle);
+                break;
+
 
         }
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }

@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "my_channel_id";
+    private static int ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,25 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         Button button = findViewById(R.id.Notification);
-        button.setOnClickListener(v->sendNotification());
+        button.setOnClickListener(v-> {
+                    NotificationHelper.sendNotification(ID,
+                            this, "Default Notification", "This is default notification", 0, 0);
+                    ID++;
+                }
+        );
         Button button1 = findViewById(R.id.NotificationLong);
-        button1.setOnClickListener(view -> sendNotificationLong());
+        button1.setOnClickListener(view -> {
+                    NotificationHelper.sendNotification(ID,
+                            this, "LongText Notification", "sfjdfifihfkjshfkjhfkdjshfdkjshdkjshfdkjshfdkjshfkdjshfkjhfksfhkfhdskfjdhsfkjdhskfhsdkfhdskdfhsdfkjsdkfhsdkfhdskfjdhsfkhdskfjdhsfkjhdsfkjhdskdhsfkjdhsjfk", 1, 0);
+                    ID++;
+                }
+        );
         Button button2 = findViewById(R.id.NotificationPicture);
-        button2.setOnClickListener(view -> sendNotificationLargeIcon());
+        button2.setOnClickListener(view -> {
+            NotificationHelper.sendNotification(ID,
+                    this, "BigPicture notification", "This is BigPicture notification", 2, R.drawable.kotek);
+            ID++;
+        });
 
     }
 
